@@ -44,6 +44,27 @@
   function paint() {
     cur.textContent = index + 1;
     dots.forEach((d, i) => d.classList.toggle('on', i === index));
+    recordar();
+  }
+
+  /* --- recordar la diapositiva entre recargas --- */
+  function recordar() {
+    try { localStorage.setItem('licorrumba-slide', String(index)); } catch (err) {}
+  }
+
+  function restaurar() {
+    let guardada = 0;
+    try { guardada = parseInt(localStorage.getItem('licorrumba-slide') || '0', 10); } catch (err) {}
+    if (!(guardada > 0) || guardada >= slides.length) return;
+    index = guardada;
+    const target = slides[index];
+    if (reading) {
+      window.scrollTo({ top: Math.max(0, target.offsetTop - 70), behavior: 'auto' });
+    } else {
+      deck.scrollTop = target.offsetTop;
+    }
+    paint();
+    progress();
   }
 
   function progress() {
@@ -163,4 +184,9 @@
   setupObserver();
   paint();
   progress();
+
+  // el navegador restaura su propio scroll: lo desactivamos para mandar nosotros
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  restaurar();
+  requestAnimationFrame(restaurar);
 })();
