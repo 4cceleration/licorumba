@@ -97,6 +97,10 @@
       case 'f':
       case 'F':
         toggleFull(); break;
+      case '?':
+        toggleHelp(); break;
+      case 'Escape':
+        if (!legend.hidden) toggleHelp(); break;
     }
   });
 
@@ -123,6 +127,19 @@
   }
 
   btnRead.addEventListener('click', toggleReading);
+
+  /* --- panel de quién presenta --- */
+  const btnHelp = document.getElementById('btn-help');
+  const legend = document.getElementById('legend');
+  function toggleHelp() {
+    const abierto = !legend.hidden;
+    legend.hidden = abierto;
+    btnHelp.setAttribute('aria-pressed', String(!abierto));
+  }
+  btnHelp.addEventListener('click', function (e) { e.stopPropagation(); toggleHelp(); });
+  document.addEventListener('click', function (e) {
+    if (!legend.hidden && !legend.contains(e.target) && e.target !== btnHelp) toggleHelp();
+  });
 
   /* --- pantalla completa --- */
   function toggleFull() {
