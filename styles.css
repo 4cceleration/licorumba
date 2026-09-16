@@ -590,11 +590,11 @@ body.reading .slide.yellow .card.num::before{ background:var(--ink); color:var(-
    QUIÉN PRESENTA — marca de color por persona
    ============================================================ */
 :root{
-  --p-elizabeth:#D90000;
-  --p-camila:#8DB355;
-  --p-miguel:#FF5FCF;
-  --p-samuel:#C147E9;
-  --p-yuliana:#FF5FCF;
+  --p-elizabeth:#E10600;   /* rojo */
+  --p-camila:#FF8A00;      /* naranja */
+  --p-miguel:#00A650;      /* verde */
+  --p-samuel:#0047FF;      /* azul */
+  --p-yuliana:#8A2BE2;     /* morado */
 }
 
 .slide{ position:relative; }
