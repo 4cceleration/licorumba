@@ -17,6 +17,7 @@
 <header class="hud">
   <div class="hud-brand">LICORRUMBA</div>
   <div class="hud-actions">
+    <button id="btn-help" class="hud-btn hud-help" aria-pressed="false" aria-controls="legend" title="Quién presenta cada parte">?</button>
     <button id="btn-read" class="hud-btn" aria-pressed="false">MODO LECTURA</button>
     <button id="btn-full" class="hud-btn" title="Pantalla completa">PRESENTAR</button>
     <div class="counter"><span id="cur">1</span><i>/</i><span id="tot">0</span></div>
@@ -24,6 +25,18 @@
 </header>
 
 <nav class="dots" id="dots" aria-label="Ir a diapositiva"></nav>
+
+<aside id="legend" class="who" hidden>
+  <p class="who-title">¿Quién presenta?</p>
+  <ul class="who-list">
+    <li><span class="who-dot" style="background:#D90000"></span><span class="who-name">Elizabeth Hernández</span><span class="who-part">Por asignar</span></li>
+    <li><span class="who-dot" style="background:#8DB355"></span><span class="who-name">María Camila Giraldo</span><span class="who-part">Por asignar</span></li>
+    <li><span class="who-dot" style="background:#FF5FCF"></span><span class="who-name">Miguel Ángel Díaz</span><span class="who-part">Cadena de suministro</span></li>
+    <li><span class="who-dot" style="background:#C147E9"></span><span class="who-name">Samuel Núñez</span><span class="who-part">Financiero y plan comercial</span></li>
+    <li><span class="who-dot" style="background:#FF5FCF"></span><span class="who-name">Yuliana Guzmán</span><span class="who-part">Por asignar</span></li>
+  </ul>
+  <p class="who-foot">La marca de color aparece arriba a la izquierda de cada diapositiva.</p>
+</aside>
 
 <main id="deck">
 
@@ -198,7 +211,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Costo de la botella · titular">
+  <section class="slide" data-title="Costo de la botella · titular" data-owner="miguel">
     <div class="wrap wide">
       <h2 class="big">¿Cuánto cuesta<br>mover la botella?</h2>
       <p class="lead">De cada <b>$100</b> vendidos en 2024, esto es lo que pasó.</p>
@@ -209,7 +222,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Costo de la botella · gráfica">
+  <section class="slide" data-title="Costo de la botella · gráfica" data-owner="miguel">
     <div class="wrap wide">
       <h2 class="mid">¿Cuánto cuesta<br>mover la botella?</h2>
       <p class="lead">Peso de cada eslabón sobre las ventas de 2024.</p>
@@ -227,7 +240,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Costo de la botella · cifras">
+  <section class="slide" data-title="Costo de la botella · cifras" data-owner="miguel">
     <div class="wrap wide">
       <h2 class="mid">¿Cuánto cuesta<br>mover la botella?</h2>
       <p class="lead">Los mismos eslabones, en pesos de 2024.</p>
@@ -249,7 +262,7 @@
   </section>
 
   <!-- 14 COMO SE VE LA CADENA -->
-  <section class="slide" data-title="La cadena paso a paso">
+  <section class="slide" data-title="La cadena paso a paso" data-owner="miguel">
     <div class="wrap wide">
       <h2 class="mid">Cómo se ve<br>la cadena</h2>
       <p class="lead">De la fábrica en Antioquia al consumidor en Risaralda, en seis pasos.</p>
@@ -282,7 +295,7 @@
   </section>
 
   <!-- 15 RESULTADOS FINANCIEROS -->
-  <section class="slide" data-title="Resultados · gráfica">
+  <section class="slide" data-title="Resultados · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Resultados<br>2023 · 2024</h2>
       <p class="lead">Vendimos menos, pero ganamos mejor: el margen neto subió de 6,61% a <mark>7,90%</mark>.</p>
@@ -298,7 +311,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Resultados · cifras">
+  <section class="slide" data-title="Resultados · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Resultados<br>2023 · 2024</h2>
       <p class="lead">Los estados de resultados de los dos últimos años.</p>
@@ -316,7 +329,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Costos e ingresos · gráfica">
+  <section class="slide" data-title="Costos e ingresos · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="big">Costos<br>e ingresos</h2>
       <p class="lead">A dónde van los <mark>$42.602.911.600</mark> que vendimos en 2024.</p>
@@ -340,7 +353,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Costos e ingresos · cifras">
+  <section class="slide" data-title="Costos e ingresos · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="big">Costos<br>e ingresos</h2>
       <p class="lead">Las mismas líneas, en pesos.</p>
@@ -362,7 +375,7 @@
   </section>
 
   <!-- 16 SITUACION FINANCIERA -->
-  <section class="slide" data-title="Situación financiera · gráfica">
+  <section class="slide" data-title="Situación financiera · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Situación<br>financiera</h2>
       <p class="lead">El patrimonio creció y el endeudamiento bajó: hay <mark>espacio para invertir</mark>.</p>
@@ -380,7 +393,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Situación financiera · cifras">
+  <section class="slide" data-title="Situación financiera · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Situación<br>financiera</h2>
       <p class="lead">El balance de 2023 y 2024.</p>
@@ -407,7 +420,7 @@
   </section>
 
   <!-- 17 META COMERCIAL -->
-  <section class="slide" data-title="Meta comercial">
+  <section class="slide" data-title="Meta comercial" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Crecer <span class="pop">15%</span></h2>
       <p class="lead">Nuestra meta comercial para el próximo año.</p>
@@ -428,7 +441,7 @@
   </section>
 
   <!-- 18 BASE Y META 9 MESES -->
-  <section class="slide" data-title="Base y meta">
+  <section class="slide" data-title="Base y meta" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Base y meta<br>a nueve meses</h2>
       <p class="lead">El horizonte del plan: de dónde partimos y a dónde debemos llegar.</p>
@@ -449,7 +462,7 @@
   </section>
 
   <!-- 19 PROYECCION MENSUAL -->
-  <section class="slide" data-title="Mes a mes · gráfica">
+  <section class="slide" data-title="Mes a mes · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Mes a mes</h2>
       <p class="lead">El crecimiento arranca en 5% y cierra en 25%, para un promedio del <mark>15%</mark>.</p>
@@ -470,7 +483,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Mes a mes · cifras">
+  <section class="slide" data-title="Mes a mes · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Mes a mes</h2>
       <p class="lead">La meta de ventas mes a mes, en pesos.</p>
@@ -495,7 +508,7 @@
   </section>
 
   <!-- 20 PEDIDOS -->
-  <section class="slide" data-title="Pedidos necesarios">
+  <section class="slide" data-title="Pedidos necesarios" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Pedidos<br>necesarios</h2>
       <div class="table-scroll">
@@ -515,7 +528,7 @@
   </section>
 
   <!-- 21 ETAPAS -->
-  <section class="slide yellow" data-title="Etapas del plan">
+  <section class="slide yellow" data-title="Etapas del plan" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Tres etapas,<br>nueve meses</h2>
       <p class="lead">Un total de <mark>$36.745.011.255</mark> repartido en tres momentos del plan.</p>
@@ -528,7 +541,7 @@
   </section>
 
   <!-- 22 RESULTADO PROYECTADO -->
-  <section class="slide" data-title="Con plan vs sin plan · gráfica">
+  <section class="slide" data-title="Con plan vs sin plan · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Con plan<br>vs. sin plan</h2>
       <p class="lead">El plan deja <mark>$378.435.386</mark> de ganancia adicional en nueve meses.</p>
@@ -544,7 +557,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Con plan vs sin plan · cifras">
+  <section class="slide" data-title="Con plan vs sin plan · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Con plan<br>vs. sin plan</h2>
       <p class="lead">Las cifras del escenario a nueve meses.</p>
@@ -563,7 +576,7 @@
   </section>
 
   <!-- 23 INVERSION -->
-  <section class="slide" data-title="Inversión · gráfica">
+  <section class="slide" data-title="Inversión · gráfica" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Retorno de <span class="pop">51,37%</span></h2>
       <p class="lead">Cada peso invertido en el plan comercial mueve hasta <mark>$19,17</mark> en ventas.</p>
@@ -578,7 +591,7 @@
     </div>
   </section>
 
-  <section class="slide" data-title="Inversión · cifras">
+  <section class="slide" data-title="Inversión · cifras" data-owner="samuel">
     <div class="wrap wide">
       <h2 class="mid">Retorno de <span class="pop">51,37%</span></h2>
       <p class="lead">Las cifras de la inversión comercial propuesta.</p>
@@ -718,22 +731,18 @@
       <div class="dofa">
         <div class="dq dq-f">
           <h3>Fortalezas</h3>
-          <p class="dq-axis">Interno · Positivo</p>
           <ol><li>Contrato de exclusividad con la FLA desde 2008</li><li>Margen neto de 7,90% y endeudamiento de 26,10%</li><li>Fuerza de ventas segmentada por canal y perfil</li><li>Red logística propia: bodega, flota y rutas optimizadas</li><li>Portafolio de marcas líderes y reconocidas</li></ol>
         </div>
         <div class="dq dq-d">
           <h3>Debilidades</h3>
-          <p class="dq-axis">Interno · Negativo</p>
           <ol><li>Dependencia total de un solo proveedor: la FLA</li><li>Portafolio limitado por el esquema de exclusividad</li><li>Los ingresos cayeron 15% entre 2023 y 2024</li><li>Costos logísticos altos por cubrir 14 municipios</li><li>Canal digital incipiente: la web solo capta contacto y pedidos</li></ol>
         </div>
         <div class="dq dq-o">
           <h3>Oportunidades</h3>
-          <p class="dq-axis">Externo · Positivo</p>
           <ol><li>Meta de crecimiento del 15% con plan a nueve meses</li><li>Hoteles, restaurantes y eventos como canal por profundizar</li><li>Digitalización de pedidos y ruteo con inteligencia artificial</li><li>Consumo responsable y sostenibilidad como diferencial</li><li>Economía circular del envase con Cristalería Peldar</li></ol>
         </div>
         <div class="dq dq-a">
           <h3>Amenazas</h3>
-          <p class="dq-axis">Externo · Negativo</p>
           <ol><li>Contrabando y licor adulterado con precios bajos</li><li>Competencia de otras marcas nacionales e importadas</li><li>Cambios en el régimen del monopolio rentístico</li><li>Restricciones legales a la publicidad de licores</li><li>Cambios sociales y culturales en el consumo</li></ol>
         </div>
       </div>
