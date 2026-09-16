@@ -260,9 +260,9 @@ mark{
 
 /* ---------- Grid de tarjetas ---------- */
 .grid-cards{ display:grid; gap:18px; width:100%; flex:1 1 auto; align-content:stretch; grid-auto-rows:1fr; }
-.g2{ grid-template-columns:repeat(2,1fr); }
+.g2{ grid-template-columns:repeat(2,1fr); max-width:1160px; margin:0 auto; }
 .g3{ grid-template-columns:repeat(3,1fr); }
-.g4{ grid-template-columns:repeat(4,1fr); }
+.g4{ grid-template-columns:repeat(2,1fr); max-width:1080px; margin:0 auto; }
 
 .card{
   border:var(--bw) solid var(--ink);
@@ -280,11 +280,14 @@ mark{
 .yellow .card.hl{ background:var(--ink); color:var(--paper); }
 .yellow .card.hl .block-key{ background:var(--yellow); color:var(--ink); }
 
+.card.num{ position:relative; padding-top:34px; }
 .card.num::before{
   content:attr(data-n);
-  font-weight:900; font-size:1.6rem; line-height:1;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  width:max-content;
+  font-weight:900; font-size:clamp(1.1rem,1.7vw,1.45rem); line-height:1;
   background:var(--ink); color:var(--yellow);
-  padding:6px 10px;
+  padding:5px 14px; border-radius:var(--r-sm);
 }
 .yellow .card.num::before{ background:var(--yellow); color:var(--ink); border:1px solid var(--ink); }
 
