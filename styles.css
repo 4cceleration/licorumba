@@ -182,7 +182,7 @@ mark{
 .lead{
   margin:0;
   font-weight:500;
-  font-size:clamp(1.15rem,2.4vw,1.8rem);
+  font-size:clamp(1.2rem,2.5vw,1.9rem);
   line-height:1.4;
   max-width:60ch;
   text-wrap:pretty;
@@ -214,10 +214,11 @@ mark{
 /* ---------- Timeline ---------- */
 .timeline{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; width:100%; }
 .tl-card{
+  position:relative;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow);
-  padding:18px 16px;
+  padding:30px 18px 20px;
   margin:0;
   display:flex; flex-direction:column; gap:10px;
   font-size:clamp(.95rem,1.55vw,1.15rem);
@@ -225,9 +226,12 @@ mark{
 }
 .tl-card p{ margin:0; }
 .tl-date{
-  font-weight:900; font-size:12px; letter-spacing:.14em;
-  background:var(--yellow); border:1px solid var(--ink);
-  padding:5px 8px; align-self:center;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; white-space:nowrap;
+  font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.14em;
+  background:var(--yellow); color:var(--ink);
+  padding:5px 14px;
+  border:1px solid var(--ink); border-radius:var(--r-sm);
 }
 
 /* ---------- Cifras grandes ---------- */
@@ -265,7 +269,7 @@ mark{
   padding:18px 16px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
   font-weight:600;
-  font-size:clamp(.95rem,1.55vw,1.18rem);
+  font-size:clamp(1rem,1.65vw,1.28rem);
   transition:transform .1s ease, box-shadow .1s ease;
 }
 .card:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
@@ -282,10 +286,14 @@ mark{
 }
 .yellow .card.num::before{ background:var(--yellow); color:var(--ink); border:1px solid var(--ink); }
 
+.card.block{ position:relative; padding-top:30px; }
 .block-key{
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; max-width:calc(100% - 24px);
   font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.16em;
+  line-height:1.2;
   background:var(--ink); color:var(--paper);
-  padding:6px 10px;
+  padding:6px 14px;
 }
 .card.block ul, .panel ul, .cv ul{
   list-style:none; margin:0; padding:0;
@@ -298,9 +306,15 @@ mark{
 }
 
 /* ---------- Etapas ---------- */
-.stage{ gap:12px; }
+.stage{ gap:12px; position:relative; padding-top:30px; }
 .stage h3{ margin:0; font-weight:900; font-size:clamp(1rem,1.8vw,1.35rem); line-height:1.05; letter-spacing:-.01em; }
-.stage-n{ font-weight:900; font-size:11px; letter-spacing:.18em; border:1px solid var(--ink); padding:5px 9px; }
+.stage-n{
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; white-space:nowrap;
+  font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.18em;
+  background:var(--yellow); border:1px solid var(--ink); border-radius:var(--r-sm);
+  padding:5px 14px;
+}
 .stage-v{ font-weight:800; font-size:clamp(.95rem,1.7vw,1.2rem); font-variant-numeric:tabular-nums; background:var(--ink); color:var(--yellow); padding:6px 10px; }
 
 /* ---------- Split / paneles ---------- */
@@ -326,18 +340,26 @@ mark{
   grid-template-columns:repeat(4,1fr);
   grid-template-areas:
     "a b c d"
-    "f b c e"
     "f g c e";
-  gap:10px;
-  font-size:clamp(.78rem,1.18vw,1rem);
+  gap:12px;
+  font-size:clamp(.88rem,1.32vw,1.15rem);
 }
 .cv{
+  position:relative;
   border:var(--bw) solid var(--ink);
+  border-radius:var(--r);
   background:var(--paper);
-  padding:12px 10px;
-  display:flex; flex-direction:column; gap:8px; align-items:center;
+  padding:28px 14px 18px;
+  display:flex; flex-direction:column; justify-content:center; gap:10px; align-items:center;
 }
-.cv h3{ font-size:clamp(.8rem,1.18vw,1rem); letter-spacing:.06em; }
+.cv h3{
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; max-width:calc(100% - 20px); white-space:nowrap;
+  font-size:clamp(.72rem,1.02vw,.9rem); letter-spacing:.08em;
+  background:var(--ink); color:var(--paper);
+  padding:5px 12px; border-radius:var(--r-sm);
+}
+.cv.hl h3{ background:var(--ink); color:var(--yellow); }
 .cv.hl{ background:var(--yellow); box-shadow:var(--shadow); }
 .cv-a{ grid-area:a; } .cv-b{ grid-area:b; } .cv-c{ grid-area:c; }
 .cv-d{ grid-area:d; } .cv-e{ grid-area:e; } .cv-f{ grid-area:f; } .cv-g{ grid-area:g; }
@@ -348,14 +370,19 @@ mark{
   width:100%;
 }
 .link{
+  position:relative;
   flex:1 1 130px; max-width:190px;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow-sm);
-  padding:14px 10px;
+  padding:24px 10px 16px;
   display:flex; flex-direction:column; align-items:center; gap:6px;
 }
-.link b{ font-weight:900; font-size:11px; letter-spacing:.14em; background:var(--ink); color:var(--yellow); padding:3px 8px; }
+.link b{
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  font-weight:900; font-size:clamp(11px,1vw,12px); letter-spacing:.14em;
+  background:var(--ink); color:var(--yellow); padding:3px 10px;
+}
 .link p{ margin:0; font-weight:900; font-size:clamp(.95rem,1.6vw,1.2rem); line-height:1.05; }
 .link small{ font-weight:500; font-size:clamp(.78rem,1.05vw,.9rem); line-height:1.3; opacity:.8; }
 .link.hl{ background:var(--yellow); }
@@ -372,7 +399,7 @@ mark{
 table{
   width:100%; border-collapse:collapse;
   font-variant-numeric:tabular-nums;
-  font-size:clamp(.92rem,1.55vw,1.2rem);
+  font-size:clamp(1rem,1.65vw,1.3rem);
   min-width:420px;
 }
 thead th{
@@ -388,7 +415,7 @@ tbody tr:nth-child(even){ background:#FAFAF7; }
 tbody tr.hi{ background:var(--yellow); }
 tbody tr.hi td{ font-weight:900; }
 table.compact tbody td{ padding:8px 12px; }
-table.ficha{ font-size:clamp(.82rem,1.25vw,1.02rem); }
+table.ficha{ font-size:clamp(.9rem,1.35vw,1.12rem); }
 table.ficha tbody td:first-child{ font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:.72em; white-space:nowrap; }
 table.ficha tbody td:last-child{ text-align:center; font-weight:500; }
 
@@ -415,7 +442,7 @@ table.ficha tbody td:last-child{ text-align:center; font-weight:500; }
   display:grid; width:100%;
   grid-template-columns:1fr 1fr;
   gap:0;
-  font-size:clamp(.78rem,1.05vw,.98rem);
+  font-size:clamp(.84rem,1.12vw,1.05rem);
 }
 .dofa::before,
 .dofa::after{
@@ -441,26 +468,36 @@ table.ficha tbody td:last-child{ text-align:center; font-weight:500; }
 /* ---------- PESTEL ---------- */
 .pestel{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; width:100%; }
 .pz{
+  position:relative;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow-sm);
-  padding:16px 14px;
+  padding:30px 16px 18px;
   display:flex; flex-direction:column; align-items:center; gap:8px;
 }
-.pz b{ font-weight:900; font-size:1.9rem; line-height:1; background:var(--ink); color:var(--yellow); width:2.1em; }
+.pz b{
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  font-weight:900; font-size:1.5rem; line-height:1;
+  background:var(--ink); color:var(--yellow);
+}
 .pz h3{ margin:0; font-weight:800; text-transform:uppercase; letter-spacing:.12em; font-size:clamp(.85rem,1.15vw,1rem); }
 .pz p{ margin:0; font-weight:500; font-size:clamp(.88rem,1.3vw,1.08rem); line-height:1.4; }
 
 /* ---------- Pasos ---------- */
 .steps{ list-style:none; margin:0; padding:0; display:grid; gap:12px; width:100%; max-width:860px; }
 .steps li{
+  position:relative;
   display:flex; align-items:center; gap:14px; text-align:left;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow-sm);
-  padding:14px 16px;
+  padding:16px 18px 16px 40px;
 }
-.steps b{ font-weight:900; font-size:clamp(1.2rem,2.4vw,1.9rem); background:var(--ink); color:var(--yellow); padding:4px 10px; flex:0 0 auto; }
+.steps b{
+  position:absolute; left:0; top:50%; transform:translate(-50%,-50%);
+  font-weight:900; font-size:clamp(1rem,1.9vw,1.4rem);
+  background:var(--ink); color:var(--yellow); padding:4px 10px;
+}
 .steps p{ margin:0; font-weight:500; font-size:clamp(.95rem,1.55vw,1.2rem); }
 .steps li.done{ background:var(--yellow); }
 .steps li.done b{ background:var(--ink); color:var(--yellow); }
@@ -511,7 +548,7 @@ body.reading .quote, body.reading .table-scroll, body.reading .link, body.readin
 body.reading .card:hover{ transform:none; box-shadow:none; }
 body.reading .g4{ grid-template-columns:repeat(2,1fr); }
 body.reading .dofa{ grid-template-columns:1fr 1fr; }
-body.reading .canvas{ grid-template-columns:repeat(2,1fr); grid-template-areas:"a b" "c c" "d e" "f g"; font-size:.82rem; }
+body.reading .canvas{ grid-template-columns:repeat(2,1fr); grid-template-areas:"a b" "c c" "d e" "f g"; font-size:.95rem; }
 body.reading .pestel{ grid-template-columns:repeat(2,1fr); }
 body.reading .scroll-hint, body.reading .dots{ display:none; }
 body.reading .slide.yellow mark{ background:var(--yellow); color:var(--ink); }
@@ -660,7 +697,7 @@ body.reading .slide[data-owner]::before{ top:20px; left:clamp(16px,4vw,40px); wi
 .progress{ border-bottom-left-radius:var(--r-sm); border-bottom-right-radius:var(--r-sm); }
 .progress span{ border-bottom-right-radius:var(--r-sm); }
 mark{ border-radius:var(--r-xs); }
-.pz b{ display:grid; place-items:center; aspect-ratio:1; width:auto; padding:0 .45em; }
+.pz b{ display:grid; place-items:center; aspect-ratio:1; width:1.9em; padding:0; }
 
 /* ============================================================
    RESPONSIVE
@@ -672,7 +709,7 @@ mark{ border-radius:var(--r-xs); }
   .canvas{
     grid-template-columns:repeat(2,1fr);
     grid-template-areas:"a b" "c c" "d e" "f g";
-    font-size:.78rem;
+    font-size:.92rem;
   }
   .timeline{ grid-template-columns:1fr; }
   .dots{ display:none; }
@@ -690,7 +727,8 @@ mark{ border-radius:var(--r-xs); }
   .dofa{ grid-template-columns:1fr; gap:14px; }
   .dofa::before, .dofa::after{ display:none; }
   .dq{ border:var(--bw) solid var(--ink); border-radius:var(--r); box-shadow:var(--shadow-sm); background:var(--paper); }
-  .steps li{ flex-direction:column; text-align:center; }
+  .steps li{ flex-direction:column; text-align:center; padding:26px 16px 16px; }
+  .steps b{ left:50%; top:0; }
   .slide{ padding-top:96px; }
   .hud-brand{ font-size:11px; padding:6px 9px; }
   .hud-btn{ font-size:10px; padding:7px 9px; }
