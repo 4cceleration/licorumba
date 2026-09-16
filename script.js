@@ -8,6 +8,17 @@
   const tot = document.getElementById('tot');
   const btnRead = document.getElementById('btn-read');
   const btnFull = document.getElementById('btn-full');
+  const hud = document.querySelector('.hud');
+
+  function measureHud() {
+    document.documentElement.style.setProperty('--hud-height', hud.offsetHeight + 'px');
+  }
+  measureHud();
+  new ResizeObserver(measureHud).observe(hud);
+
+  function readingTop(target) {
+    return Math.max(0, target.getBoundingClientRect().top + window.scrollY - hud.offsetHeight - 16);
+  }
 
   let index = 0;
   let reading = false;
@@ -34,7 +45,7 @@
     index = Math.max(0, Math.min(slides.length - 1, i));
     const target = slides[index];
     if (reading) {
-      window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+      window.scrollTo({ top: readingTop(target), behavior: 'smooth' });
     } else {
       deck.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
     }
@@ -59,7 +70,7 @@
     index = guardada;
     const target = slides[index];
     if (reading) {
-      window.scrollTo({ top: Math.max(0, target.offsetTop - 70), behavior: 'auto' });
+      window.scrollTo({ top: readingTop(target), behavior: 'instant' });
     } else {
       deck.scrollTop = target.offsetTop;
     }
@@ -74,26 +85,28 @@
     bar.style.width = pct + '%';
   }
 
-  /* --- detectar diapositiva visible (el root cambia según el modo) --- */
-  let observer = null;
-  function setupObserver() {
-    if (observer) observer.disconnect();
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const i = slides.indexOf(e.target);
-            if (i > -1) { index = i; paint(); }
-          }
-        });
-      },
-      { root: reading ? null : deck, threshold: reading ? 0.2 : 0.5 }
-    );
-    slides.forEach((s) => observer.observe(s));
+  /* --- detectar también diapositivas más altas que la pantalla --- */
+  let scrollFrame = null;
+  function trackPosition() {
+    if (scrollFrame !== null) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+      const top = reading ? hud.getBoundingClientRect().bottom : deck.getBoundingClientRect().top;
+      const height = reading ? window.innerHeight - top : deck.clientHeight;
+      const probe = top + Math.min(160, height * .3);
+      let visible = 0;
+      for (let i = 0; i < slides.length; i++) {
+        if (slides[i].getBoundingClientRect().top > probe) break;
+        visible = i;
+      }
+      if (visible !== index) { index = visible; paint(); }
+      progress();
+    });
   }
 
-  deck.addEventListener('scroll', progress, { passive: true });
-  window.addEventListener('scroll', progress, { passive: true });
+  deck.addEventListener('scroll', trackPosition, { passive: true });
+  window.addEventListener('scroll', trackPosition, { passive: true });
+  window.addEventListener('resize', trackPosition, { passive: true });
 
   /* --- teclado --- */
   document.addEventListener('keydown', (e) => {
@@ -127,19 +140,19 @@
 
   /* --- modo lectura --- */
   function toggleReading() {
+    const target = slides[index];
     reading = !reading;
     document.body.classList.toggle('reading', reading);
     btnRead.setAttribute('aria-pressed', String(reading));
     btnRead.textContent = reading ? 'MODO PRESENTACIÓN' : 'MODO LECTURA';
-    setupObserver();
+    measureHud();
     // mantener la posición en la diapositiva actual al cambiar de modo
     requestAnimationFrame(() => {
-      const target = slides[index];
       if (reading) {
         deck.scrollTop = 0;
-        window.scrollTo({ top: Math.max(0, target.offsetTop - 70), behavior: 'auto' });
+        window.scrollTo({ top: readingTop(target), behavior: 'instant' });
       } else {
-        window.scrollTo({ top: 0, behavior: 'auto' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
         deck.scrollTop = target.offsetTop;
       }
       progress();
@@ -181,12 +194,10 @@
     if (localStorage.getItem('licorrumba-reading') === '1') toggleReading();
   } catch (err) {}
 
-  setupObserver();
-  paint();
-  progress();
-
   // el navegador restaura su propio scroll: lo desactivamos para mandar nosotros
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   restaurar();
   requestAnimationFrame(restaurar);
+  paint();
+  progress();
 })();
