@@ -538,6 +538,12 @@ body.reading .slide.yellow .card.num::before{ background:var(--ink); color:var(-
   padding:16px 14px;
   display:flex; flex-direction:column; justify-content:center; gap:12px;
 }
+.chart-note{
+  margin:0; padding-top:12px;
+  border-top:3px solid var(--ink);
+  font-weight:600; font-size:clamp(.74rem,1.05vw,.88rem);
+  line-height:1.35;
+}
 .chart-cap{
   margin:0; font-weight:700; font-size:clamp(.7rem,1vw,.8rem);
   letter-spacing:.04em; text-transform:uppercase;
