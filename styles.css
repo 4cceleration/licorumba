@@ -214,22 +214,22 @@ mark{
 @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
 
 /* ---------- Timeline ---------- */
-.timeline{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; width:100%; flex:1 1 auto; grid-auto-rows:1fr; max-height:60vh; }
+.timeline{ display:grid; grid-template-columns:1fr; gap:18px; width:100%; max-width:1080px; flex:1 1 auto; grid-auto-rows:1fr; max-height:62vh; }
 .tl-card{
   position:relative;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow);
-  padding:30px 18px 20px;
+  padding:28px 30px 22px;
   margin:0;
-  display:flex; flex-direction:column; gap:10px;
+  display:flex; flex-direction:column; justify-content:center; gap:10px;
   font-size:clamp(1.02rem,1.7vw,1.35rem);
   font-weight:500;
 }
 .tl-card p{ margin:0; }
 .tl-date{
-  position:absolute; top:0; left:0; right:0; transform:translateY(-50%);
-  margin:0 auto; width:max-content; max-width:calc(100% - 28px); white-space:nowrap;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; width:max-content; max-width:calc(100% - 28px); white-space:nowrap;
   font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.14em;
   background:var(--yellow); color:var(--ink);
   padding:5px 14px;
@@ -290,8 +290,8 @@ mark{
 
 .card.block{ position:relative; padding-top:34px; }
 .block-key{
-  position:absolute; top:0; left:0; right:0; transform:translateY(-50%);
-  margin:0 auto; width:max-content; max-width:calc(100% - 28px); text-align:center;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; width:max-content; max-width:calc(100% - 28px); text-align:center;
   font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.16em;
   line-height:1.25;
   background:var(--ink); color:var(--paper);
@@ -311,8 +311,8 @@ mark{
 .stage{ gap:12px; position:relative; padding-top:30px; }
 .stage h3{ margin:0; font-weight:900; font-size:clamp(1rem,1.8vw,1.35rem); line-height:1.05; letter-spacing:-.01em; }
 .stage-n{
-  position:absolute; top:0; left:0; right:0; transform:translateY(-50%);
-  margin:0 auto; width:max-content; max-width:calc(100% - 28px); white-space:nowrap;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; width:max-content; max-width:calc(100% - 28px); white-space:nowrap;
   font-weight:900; font-size:clamp(11px,1.05vw,13px); letter-spacing:.18em;
   background:var(--yellow); border:1px solid var(--ink); border-radius:var(--r-sm);
   padding:5px 14px;
@@ -357,8 +357,8 @@ mark{
   display:flex; flex-direction:column; justify-content:center; gap:10px; align-items:center;
 }
 .cv h3{
-  position:absolute; top:0; left:0; right:0; transform:translateY(-50%);
-  margin:0 auto; width:max-content; max-width:calc(100% - 20px); white-space:nowrap;
+  position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  margin:0; width:max-content; max-width:calc(100% - 20px); white-space:nowrap;
   font-size:clamp(.72rem,1.02vw,.9rem); letter-spacing:.08em;
   background:var(--ink); color:var(--paper);
   padding:5px 12px; border-radius:var(--r-sm);
@@ -370,28 +370,28 @@ mark{
 
 /* ---------- Cadena de suministro ---------- */
 .chain{
-  display:flex; flex-wrap:wrap; align-items:stretch; justify-content:center; gap:10px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
   width:100%;
 }
 .link{
   position:relative;
-  flex:1 1 130px; max-width:190px;
+  width:100%; max-width:760px;
   border:var(--bw) solid var(--ink);
   background:var(--paper);
   box-shadow:var(--shadow-sm);
-  padding:24px 10px 16px;
-  display:flex; flex-direction:column; align-items:center; gap:6px;
+  padding:13px 24px 13px 36px;
+  display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:4px 14px;
 }
 .link b{
-  position:absolute; top:0; left:0; right:0; margin:0 auto; width:max-content; transform:translateY(-50%);
-  font-weight:900; font-size:clamp(11px,1vw,12px); letter-spacing:.14em;
-  background:var(--ink); color:var(--yellow); padding:3px 10px;
+  position:absolute; top:50%; left:0; transform:translate(-50%,-50%);
+  font-weight:900; font-size:clamp(11px,1vw,13px); letter-spacing:.08em;
+  background:var(--ink); color:var(--yellow); padding:4px 9px;
 }
 .link p{ margin:0; font-weight:900; font-size:clamp(1.02rem,1.7vw,1.32rem); line-height:1.08; }
 .link small{ font-weight:500; font-size:clamp(.85rem,1.15vw,1rem); line-height:1.3; opacity:.8; }
 .link.hl{ background:var(--yellow); }
-.arrow{ align-self:center; font-weight:900; font-size:1.5rem; }
-.chain-notes{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; }
+.arrow{ align-self:center; font-weight:900; font-size:1.5rem; line-height:1; transform:rotate(90deg); }
+.chain-notes{ display:grid; grid-template-columns:1fr 1fr; gap:16px; width:100%; max-width:1080px; }
 .chain-notes p{
   margin:0; padding:16px;
   border:1px dashed var(--ink);
@@ -735,7 +735,6 @@ mark{ border-radius:var(--r-xs); }
     grid-template-areas:"a b" "c c" "d e" "f g";
     font-size:.92rem;
   }
-  .timeline{ grid-template-columns:1fr; }
   .dots{ display:none; }
 }
 
@@ -746,8 +745,6 @@ mark{ border-radius:var(--r-xs); }
   .chain-notes{ grid-template-columns:1fr; }
   .pestel{ grid-template-columns:1fr; }
   .canvas{ grid-template-columns:1fr; grid-template-areas:"a" "b" "c" "d" "e" "f" "g"; }
-  .arrow{ transform:rotate(90deg); }
-  .link{ max-width:none; }
   .dofa{ grid-template-columns:1fr; grid-template-rows:none; min-height:0; gap:14px; }
   .dofa::before, .dofa::after{ display:none; }
   .dq{ border:var(--bw) solid var(--ink); border-radius:var(--r); box-shadow:var(--shadow-sm); background:var(--paper); }
