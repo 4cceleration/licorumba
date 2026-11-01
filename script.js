@@ -58,14 +58,18 @@
     recordar();
   }
 
-  /* --- recordar la diapositiva entre recargas --- */
+  /* --- recordar la diapositiva entre recargas (cada presentación guarda la suya) --- */
+  const sufijo = document.body.dataset.deck ? '-' + document.body.dataset.deck : '';
+  const claveSlide = 'licorrumba-slide' + sufijo;
+  const claveLectura = 'licorrumba-reading' + sufijo;
+
   function recordar() {
-    try { localStorage.setItem('licorrumba-slide', String(index)); } catch (err) {}
+    try { localStorage.setItem(claveSlide, String(index)); } catch (err) {}
   }
 
   function restaurar() {
     let guardada = 0;
-    try { guardada = parseInt(localStorage.getItem('licorrumba-slide') || '0', 10); } catch (err) {}
+    try { guardada = parseInt(localStorage.getItem(claveSlide) || '0', 10); } catch (err) {}
     if (!(guardada > 0) || guardada >= slides.length) return;
     index = guardada;
     const target = slides[index];
@@ -140,6 +144,7 @@
 
   /* --- modo lectura --- */
   function toggleReading() {
+    if (!btnRead) return; // una presentación puede no ofrecer modo lectura
     const target = slides[index];
     reading = !reading;
     document.body.classList.toggle('reading', reading);
@@ -157,10 +162,10 @@
       }
       progress();
     });
-    try { localStorage.setItem('licorrumba-reading', reading ? '1' : '0'); } catch (err) {}
+    try { localStorage.setItem(claveLectura, reading ? '1' : '0'); } catch (err) {}
   }
 
-  btnRead.addEventListener('click', toggleReading);
+  if (btnRead) btnRead.addEventListener('click', toggleReading);
 
   /* --- panel de quién presenta --- */
   const btnHelp = document.getElementById('btn-help');
@@ -191,7 +196,7 @@
 
   /* --- arranque --- */
   try {
-    if (localStorage.getItem('licorrumba-reading') === '1') toggleReading();
+    if (localStorage.getItem(claveLectura) === '1') toggleReading();
   } catch (err) {}
 
   // el navegador restaura su propio scroll: lo desactivamos para mandar nosotros
