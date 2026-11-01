@@ -13,12 +13,13 @@
 
 /* ---------- Diapositivas azules: texto blanco; las tarjetas blancas conservan el texto oscuro ---------- */
 .slide.yellow{ color:var(--on-fill); }
-.slide.yellow :is(.stat,.chip,.org-n){ color:var(--ink); }
+.slide.yellow :is(.stat,.chip,.org-n,.pz){ color:var(--ink); }
 .yellow .team{ border-top-color:var(--on-fill); }
 .yellow .note{ opacity:1; }
 
 /* ---------- Rellenos azules y negros: texto blanco ---------- */
-.stat.hl,.counter,.org-n.hl,.org-n.top,.q,.hud-btn:hover,a.chip:hover,.hud-btn[aria-pressed="true"]{ color:var(--on-fill); }
+.stat.hl,.counter,.org-n.hl,.org-n.top,.q,.hud-btn:hover,a.chip:hover,.hud-btn[aria-pressed="true"],
+.dq h3,.dq li::before,.pz b,.slide.yellow .pz b{ color:var(--on-fill); }
 .counter i{ opacity:.85; }
 
 /* ---------- Enlace de descarga con aspecto de botón ---------- */
@@ -38,6 +39,8 @@ a.hud-btn{ display:inline-block; text-decoration:none; }
   font-size:clamp(1.7rem,3.7vw,3.25rem); line-height:1.08; letter-spacing:-.025em; text-wrap:balance;
 }
 
+.slide.fit .titulo{ font-size:clamp(1.45rem,2.75vw,2.5rem); }
+
 /* ---------- Cifras y etiquetas ---------- */
 .stats.flex{ display:flex; flex-wrap:wrap; justify-content:center; }
 .stats.flex .stat{ flex:0 1 clamp(170px,18.5vw,265px); }
@@ -46,6 +49,17 @@ a.hud-btn{ display:inline-block; text-decoration:none; }
 .chips.grande .chip{ font-size:clamp(1.15rem,2vw,1.8rem); }
 a.chip{ color:inherit; text-decoration:none; }
 a.chip:hover{ background:var(--yellow); }
+
+/* ---------- DOFA y PESTEL: como en la presentación principal, con líneas finas ---------- */
+.dq:nth-child(odd){ border-right-width:1px; }
+.dq:nth-child(-n+2){ border-bottom-width:1px; }
+.dofa-slide .dofa{ font-size:var(--text-flow); }
+.dofa-slide .dq{ padding:clamp(10px,1.3vw,18px) clamp(12px,1.6vw,24px); gap:10px; }
+.dofa-slide .dq h3{ font-size:var(--text-flow); }
+.dofa-slide .dq ol{ gap:5px; }
+.dofa-slide .dq li{ line-height:1.24; }
+.pestel .pz{ padding:clamp(12px,1.4vw,18px); gap:8px; }
+.pestel .pz p{ font-size:var(--text-flow); line-height:1.3; }
 
 /* ---------- Partes interesadas ---------- */
 .grupos{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; width:100%; }
