@@ -21,6 +21,9 @@
 .stat.hl,.counter,.org-n.hl,.org-n.top,.q,.hud-btn:hover,a.chip:hover,.hud-btn[aria-pressed="true"]{ color:var(--on-fill); }
 .counter i{ opacity:.85; }
 
+/* ---------- Enlace de descarga con aspecto de botón ---------- */
+a.hud-btn{ display:inline-block; text-decoration:none; }
+
 /* ---------- Diapositivas con más contenido ---------- */
 .slide.fit{ padding-block:clamp(16px,2.6vh,36px); }
 .slide.fit .wrap{ gap:clamp(10px,1.7vh,22px); }
